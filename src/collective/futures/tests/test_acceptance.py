@@ -8,12 +8,12 @@ from Products.Five.browser import BrowserView
 import robotsuite
 from plone.testing import layered
 from zope.interface import noLongerProvides
-from experimental.futures.interfaces import IContainsPromises
-from experimental.futures.testing import FUTURES_ROBOT_TESTING
-from experimental import futures
+from collective.futures.interfaces import IContainsPromises
+from collective.futures.testing import FUTURES_ROBOT_TESTING
+from collective import futures
 
 
-logger = logging.getLogger('experimental.futures')
+logger = logging.getLogger('collective.futures')
 
 
 def echo(value):

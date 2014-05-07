@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import cPickle
 from zope.globalrequest import getRequest
-from experimental.futures.exceptions import (
+from collective.futures.exceptions import (
     FutureNotResolvedError,
     FutureNotSubmittedError
 )
-from experimental.futures.interfaces import (
+from collective.futures.interfaces import (
     IFutures,
     IPromises
 )

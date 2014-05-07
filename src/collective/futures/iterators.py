@@ -11,10 +11,10 @@ from ZServer.Producers import iterator_producer
 from ZServer.PubCore.ZEvent import Wakeup
 from concurrent import futures
 from zope.interface import implements
-from experimental.futures.interfaces import IFutures
+from collective.futures.interfaces import IFutures
 
 
-logger = logging.getLogger('experimental.futures')
+logger = logging.getLogger('collective.futures')
 
 
 def echo(value=None):
@@ -96,7 +96,7 @@ class zhttp_channel_wrapper(object):
 def worker(promises, callback):
     # Read the product config
     product_config = getattr(getConfiguration(), 'product_config', {}) or {}
-    configuration = product_config.get('experimental.promises') or {}
+    configuration = product_config.get('collective.promises') or {}
     try:
         max_workers = int(configuration.get('max_workers', 5))
     except ValueError:

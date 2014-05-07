@@ -15,7 +15,7 @@ from zope.testing.loggingsupport import InstalledHandler
 class Futures(RemoteLibrary):
 
     def start_futures_logging(self):
-        self._v_record = InstalledHandler('experimental.futures',
+        self._v_record = InstalledHandler('collective.futures',
                                           level=logging.DEBUG)
 
     def get_futures_log(self):
@@ -36,18 +36,18 @@ class FuturesTests(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        import experimental.futures
-        self.loadZCML(package=experimental.futures)
+        import collective.futures
+        self.loadZCML(package=collective.futures)
 
-        import experimental.futures.tests
-        self.loadZCML(package=experimental.futures.tests,
+        import collective.futures.tests
+        self.loadZCML(package=collective.futures.tests,
                       name='test_acceptance.zcml')
 
     def setUpPloneSite(self, portal):
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
     def testSetUp(self):
-        handler = InstalledHandler('experimental.futures')
+        handler = InstalledHandler('collective.futures')
 
 
 FUTURES_FIXTURE = FuturesTests()

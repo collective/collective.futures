@@ -9,15 +9,15 @@ from zope.interface import (
     alsoProvides
 )
 
-from experimental.futures.interfaces import (
+from collective.futures.interfaces import (
     IPromises,
     IFutures,
     IContainsPromises
 )
 
 
-PROMISES_KEY = 'experimental.promises'
-FUTURES_KEY = 'experimental.futures.futures'
+PROMISES_KEY = 'collective.promises'
+FUTURES_KEY = 'collective.futures.futures'
 
 
 @implementer(IPromises)

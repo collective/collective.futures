@@ -12,7 +12,7 @@
   <adapter factory=".adapters.get_promises" />
   <adapter factory=".adapters.get_futures" />
 
-  <adapter name="experimental.futures.transform"
+  <adapter name="collective.futures.transform"
            factory=".transforms.PromisesTransform" />
 
 </configure>

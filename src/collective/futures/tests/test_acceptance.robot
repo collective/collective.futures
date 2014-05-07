@@ -1,5 +1,5 @@
-# bin/robot-server experimental.futures.testing.FUTURES_ROBOT_TESTING
-# bin/robot src/experimental/futures/tests/test_acceptance.robot
+# bin/robot-server collective.futures.testing.FUTURES_ROBOT_TESTING
+# bin/robot src/collective/futures/tests/test_acceptance.robot
 
 *** Settings ***
 
