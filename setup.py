@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='experimental.futures',
-    version='0.1.0',
+    name='collective.futures',
+    version='0.9.0',
     description='',
     long_description=(open('README.rst').read() + '\n' +
                       open('CHANGES.rst').read()),
@@ -19,7 +19,7 @@ setup(
     license='GPL',
     package_dir={'': 'src'},
     packages=find_packages('src', exclude=['ez_setup']),
-    namespace_packages=['experimental'],
+    namespace_packages=['collective'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[

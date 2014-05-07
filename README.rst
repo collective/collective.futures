@@ -1,14 +1,10 @@
-experimental.futures
-====================
+collective.futures
+==================
 
-.. image:: https://secure.travis-ci.org/datakurre/experimental.promises.png
-   :target: http://travis-ci.org/datakurre/experimental.promises
+.. image:: https://secure.travis-ci.org/datakurre/collective.futures.png
+   :target: http://travis-ci.org/datakurre/collective.futures
 
-(This package was renamed from *experimental.promises* to
-*experimental.futures*, because the API has been forming to
-follow usage of *concurrent.futures*.)
-
-This is an experimental package for providing yet another
+This is an collective package for providing yet another
 way to do asynchronous (non-blocking) processing on Plone.
 
 This time we speak in terms of promises and futures:
@@ -31,7 +27,7 @@ Example
 
    from Products.Five.browser import BrowserView
 
-   from experimental import futures
+   from collective import futures
 
 
    def my_async_task(*args):
@@ -54,7 +50,7 @@ or
 
    from Products.Five.browser import BrowserView
 
-   from experimental import futures
+   from collective import futures
 
 
    def my_async_task(*args):
