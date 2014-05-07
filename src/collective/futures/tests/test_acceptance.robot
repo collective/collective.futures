@@ -49,6 +49,21 @@ Result or submit multiprocess
     Log should not contain  echo: testing-result-or-submit-multiprocess
     # ^ because the log is lost in separate process
 
+Transaction abort
+    Go to  ${PLONE_URL}/testing-transaction-abort
+    Element should contain  test-content   transaction-abort
+    Log should contain  echo: testing-result
+    Log should contain  all: futures.testing
+    Log should not contain  multiprocess: futures.testing
+
+Transaction commit
+    Go to  ${PLONE_URL}/testing-transaction-commit
+    Element should contain  test-content   transaction-commit
+    Log should contain  echo: testing-result
+    Log should contain  all: futures.testing
+    Log should not contain  multiprocess: futures.testing
+
+
 *** Keywords ***
 
 Log should contain

@@ -27,25 +27,21 @@ class ResultView(BrowserView):
         try:
             return futures.result('futures.testing')
         except futures.FutureNotSubmittedError:
-            futures.submit(
-                'futures.testing',
-                echo, u'testing-result')
+            futures.submit('futures.testing', echo, u'testing-result')
             return u'testing placeholder'
 
 
 class ResultOrSubmitView(BrowserView):
     def content(self):
-        return futures.resultOrSubmit(
-            'futures.testing', u'placeholder',
-            echo, u'testing-result-or-submit')
+        return futures.resultOrSubmit('futures.testing', u'placeholder',
+                                      echo, u'testing-result-or-submit')
 
 
 class ResultOrSubmitPlaceholderView(BrowserView):
     def content(self):
         try:
-            return futures.resultOrSubmit(
-                'futures.testing', u'placeholder',
-                echo, u'testing-result-or-submit')
+            return futures.resultOrSubmit('futures.testing', u'placeholder',
+                                          echo, u'testing-result-or-submit')
         finally:
             noLongerProvides(self.request, IContainsPromises)
 
@@ -55,9 +51,8 @@ class ResultMultiprocessView(BrowserView):
         try:
             return futures.result('futures.testing')
         except futures.FutureNotSubmittedError:
-            futures.submitMultiprocess(
-                'futures.testing',
-                echo, u'testing-result-multiprocess')
+            futures.submitMultiprocess('futures.testing',
+                                       echo, u'testing-result-multiprocess')
             return u'testing placeholder'
 
 
@@ -66,6 +61,35 @@ class ResultOrSubmitMultiprocessView(BrowserView):
         return futures.resultOrSubmitMultiprocess(
             'futures.testing', u'placeholder',
             echo, u'testing-result-or-submit-multiprocess')
+
+
+class TransactionAbortView(BrowserView):
+    """For testing that transactions are properly aborted if submitted
+    futures exist
+
+    """
+    def content(self):
+        try:
+            futures.result('futures.testing')
+            return getattr(self.context, '_futures_flag', u'transaction-abort')
+        except futures.FutureNotSubmittedError:
+            setattr(self.context, '_futures_flag', u'transaction-commit')
+            setattr(self.context, '_p_changed', True)
+            futures.submit('futures.testing', echo, u'testing-result')
+            return u'testing placeholder'
+
+
+class TransactionCommitView(TransactionAbortView):
+    """For testing that transaction can be committed with force to override
+    the default behavior
+
+    """
+    def content(self):
+        try:
+            return super(TransactionCommitView, self).content()
+        finally:
+            import transaction
+            transaction.commit()
 
 
 def test_suite():

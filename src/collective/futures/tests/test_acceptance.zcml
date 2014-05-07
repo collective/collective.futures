@@ -43,4 +43,20 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="testing-transaction-abort"
+      for="*"
+      class=".test_acceptance.TransactionAbortView"
+      template="test_acceptance.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="testing-transaction-commit"
+      for="*"
+      class=".test_acceptance.TransactionCommitView"
+      template="test_acceptance.pt"
+      permission="zope2.View"
+      />
+
 </configure>
