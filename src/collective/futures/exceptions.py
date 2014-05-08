@@ -11,3 +11,7 @@ class FutureNotSubmittedError(FuturesException):
 
 class FutureNotResolvedError(FuturesException):
     """Requested future has not yet been resolved"""
+
+
+class FutureAlreadyResolvedError(FuturesException):
+    """Requested future has already been resolved"""

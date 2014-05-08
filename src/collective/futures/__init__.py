@@ -3,10 +3,14 @@ from collective.futures.api import (
     submit,
     submitMultiprocess,
     resultOrSubmit,
-    resultOrSubmitMultiprocess
+    resultOrSubmitMultiprocess,
+    cancel,
+    clear,
+    reset
 )
 from collective.futures.exceptions import (
     FuturesException,
     FutureNotSubmittedError,
-    FutureNotResolvedError
+    FutureNotResolvedError,
+    FutureAlreadyResolvedError
 )

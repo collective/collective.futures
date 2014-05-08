@@ -3,7 +3,8 @@ import cPickle
 from zope.globalrequest import getRequest
 from collective.futures.exceptions import (
     FutureNotResolvedError,
-    FutureNotSubmittedError
+    FutureNotSubmittedError,
+    FutureAlreadyResolvedError
 )
 from collective.futures.interfaces import (
     IFutures,
@@ -41,18 +42,21 @@ def result(key, default=_marker):
 
 
 def submit(key, fn, *args, **kwargs):
-    """Submit promise (name, function, arguments.., keyword arguments...)
-    for the default (thread) executor
+    """Submit promise for a future (name, function, arguments.., keyword
+    arguments...) for the default (thread) executor
 
     """
     request = getRequest()
+    if key in IFutures(request):
+        raise FutureAlreadyResolvedError((
+            u"Future '{0:s}' has already been resolved "
+            u"and must be cleared before resubmitting.").format(key))
     IPromises(request)[key] = {
         'fn': fn,
         'args': args,
         'kwargs': kwargs
     }
     return True  # to enable submit(...) and ...
-
 
 def resultOrSubmit(key, placeholder, fn, *args, **kwargs):
     """Get the required future. When the future is not available,
@@ -76,6 +80,10 @@ def submitMultiprocess(key, fn, *args, **kwargs):
 
     """
     request = getRequest()
+    if key in IFutures(request):
+        raise FutureAlreadyResolvedError((
+            u"Future '{0:s}' has already been resolved "
+            u"and must be cleared before resubmitting.").format(key))
     IPromises(request)[key] = cPickle.dumps({
         'fn': fn,
         'args': args,
@@ -95,3 +103,42 @@ def resultOrSubmitMultiprocess(key, placeholder, fn, *args, **kwargs):
     except FutureNotSubmittedError:
         submitMultiprocess(key, fn, *args, **kwargs)
     return placeholder
+
+
+def cancel(key):
+    """Clear submitted promise. Return True when promise was found and
+    cancelled. False otherwise.
+
+    """
+    request = getRequest()
+    promises = IPromises(request)
+    if key in promises:
+        del promises[key]
+        return True
+    else:
+        return False
+
+
+def clear(key):
+    """Clear resolved future. Return True when futures was found and
+    cleared. False otherwise.
+
+    """
+    request = getRequest()
+    futures = IFutures(request)
+    if key in futures:
+        del futures[key]
+        return True
+    else:
+        return False
+
+
+def reset(key):
+    """Clear submitted promise and resolved future (when found). Return True
+    when either was found and cancelled. False otherwise.
+
+    """
+    cleared = clear(key)
+    cancelled = cancel(key)
+    return cleared or cancelled
+
