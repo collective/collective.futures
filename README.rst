@@ -4,7 +4,7 @@ collective.futures
 .. image:: https://secure.travis-ci.org/datakurre/collective.futures.png
    :target: http://travis-ci.org/datakurre/collective.futures
 
-This is an collective package for providing yet another
+This is a collective package for providing yet another
 way to do asynchronous (non-blocking) processing on Plone.
 
 This time we speak in terms of promises and futures:
@@ -17,7 +17,8 @@ Plone running on top of a Zope instance.
 
 A major limitation is that the asynchronously executed
 code cannot access the database in any way (or you may
-face unexpected consequences).
+face unexpected consequences). Also, this brings no benefits
+with HAProxy and fixed amount current requests per instance.
 
 
 Example
