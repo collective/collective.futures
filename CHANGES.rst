@@ -4,8 +4,8 @@ Changelog
 0.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue where resolved futures were not passed for nested requests
+  [datakurre]
 
 0.9.0 (2014-10-23)
 ------------------
