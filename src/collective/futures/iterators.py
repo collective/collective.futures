@@ -157,7 +157,8 @@ class PromiseWorkerStreamIterator(StringIO.StringIO):
 
         # Init futures and futures
         self._promises = promises
-        self._futures = IFutures(request)
+        self._futures = {}
+        self._futures_previous = IFutures(request)
 
         # Init Lock
         self._mutex = threading.Lock()
@@ -176,6 +177,7 @@ class PromiseWorkerStreamIterator(StringIO.StringIO):
     def next(self):
         if self._futures:
             IFutures(self._zrequest).update(self._futures)
+            IFutures(self._zrequest).update(self._futures_previous)
             self._futures = {}  # mark consumed to raise StopIteration
 
             from ZServer.PubCore import handle
