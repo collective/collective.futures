@@ -126,6 +126,7 @@ def worker(promises, callback):
         try:
             value = future.result()
         except Exception as e:
+            logger.exception('Future resolved into exception:')
             value = e
         callback(promise, value)
 
