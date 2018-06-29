@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.2 (unreleased)
+0.9.2 (2018-06-29)
 ------------------
 
 - Add to log exceptions within futures to get full exception stacktraces
