@@ -4,8 +4,8 @@ Changelog
 0.9.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add to log exceptions within futures to get full exception stacktraces
+  [Asko Soukka]
 
 0.9.1 (2016-05-25)
 ------------------
