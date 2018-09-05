@@ -154,6 +154,7 @@ class PromiseWorkerStreamIterator(StringIO.StringIO):
         response.stdout._channel = self._wrapped_channel
 
         # Enable stream iterator support
+        response.setStatus(302)  # required by plone.protect
         response.setHeader('content-length', '0')  # required by ZPublisher
 
         # Init futures and futures
