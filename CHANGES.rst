@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.3 (unreleased)
+0.9.3 (2018-09-05)
 ------------------
 
 - Fix issue where plone.protect tried to parse PromiseWorkerStreamIterator as
