@@ -4,14 +4,15 @@ Changelog
 0.9.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue where plone.protect tried to parse PromiseWorkerStreamIterator as
+  xml
+  [datakurre]
 
 0.9.2 (2018-06-29)
 ------------------
 
 - Add to log exceptions within futures to get full exception stacktraces
-  [Asko Soukka]
+  [datakurre]
 
 0.9.1 (2016-05-25)
 ------------------
