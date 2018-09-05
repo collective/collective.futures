@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='collective.futures',
-    version='0.9.3',
+    version='0.9.4.dev0',
     description='Experimental non-blocking futures for Plone',
     long_description=(open('README.rst').read() + '\n' +
                       open('CHANGES.rst').read()),
